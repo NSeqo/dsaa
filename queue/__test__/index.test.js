@@ -1,6 +1,6 @@
 
 
-const { delRing, fibonacci, simulateStack } = require('../index')
+const { delRing, fibonacci, simulateStack, yanghui } = require('../index')
 
 
 test('测试约瑟夫环', () => {
@@ -37,4 +37,10 @@ test('队列来模拟栈', () => {
 
     expect(stack.pop())
         .toBe(2)
+})
+
+
+test('杨辉三角', () => {
+    
+    console.log(yanghui(5));
 })

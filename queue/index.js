@@ -198,5 +198,61 @@ exports.simulateStack = function () {
         1 4 6 4 1 
 
         // 第i行第j个数字的规律，显然是一个递归的公式，如果是用队列处理
+        // 对于这种递归的问题，大概都可以使用队列来处理，因为是使用队列刚好就可以前两项处理之后的结果放到队尾
     这个f(i)(j) = f(i-1)(j-1) + f(i-1)(j)
+
+    思路：
+    使用队列来处理计算每一个行的数字，必定是两层循环，外层循环是第i行，内层循环是第j个数字，每次循环的操作其实计算的是下一行的值，
+    始终保持队列中保存的是两个数字
  */
+
+
+ exports.yanghui = function(n) {
+    // 输出从1到n行的杨辉三角
+    let queue = new Queue()
+
+    queue.enqueue(1); // 第一行就一个数字1
+
+    const temp = [];
+
+    temp[0] = [1]; // 二维数组表示杨辉三角
+    
+    for (let i = 1; i < n; i++) {
+
+        //每次循环其实是计算下一行的数字
+
+        temp[i] = []
+
+        let prev = 0
+
+        const nextQueue = new Queue()
+
+        while(!queue.isEmpty()) {
+            
+            
+
+            let item = queue.dequeue()
+
+            let value = prev + item
+
+            temp[i].push(value)
+
+            nextQueue.enqueue(value)
+
+            prev = item
+
+        }
+
+        // 每一行最后一个是1
+        temp[i].push(1)
+        nextQueue.enqueue(1)
+
+       
+        //下次循环的时候，将nextQueue赋值给queue
+        queue = nextQueue
+        
+    }
+
+    return temp
+    
+ }
