@@ -98,6 +98,92 @@ function LinkList() {
         }
 
 
+        length++
+
+        return true
+
+
     }
+
+    // 删除操作，删除指定位置的节点
+    this.remove = function (index) {
+
+        if (index < 0 || index >= length) {
+            //index越界
+            return null
+        } else {
+
+            let targetNode = null  // 待删除的节点
+            let targetPrevNode = null
+
+            if (index === 0) {
+                //删除的是首节点
+                targetNode = head
+                head = head.next
+                length--
+
+                if (length === 0) {
+                    // 说明链表中已经没有节点了
+                    tail = null
+                }
+            } else {
+                //找到目标节点
+                targetNode = head
+
+                while (index--) {
+                    targetPrevNode = targetNode
+                    targetNode = targetNode.next
+                }
+                // targetNode被删除，它前一个节点的指向直接改为为targetNode.next
+                targetPrevNode.next = targetNode.next
+                targetNode.next = null
+
+                if (targetNode === tail) {
+                    //删除的时尾节点，尾节点的指向要改变一下
+                    tail = targetPrevNode
+                }
+                length--
+            }
+
+            return targetNode.data
+        }
+
+    }
+
+
+
+    // get方法，获取指定索引位置的节点数据
+
+    this.get = function (index) {
+        let target = head
+        while (index-- > 0) {
+            target = target.next
+        }
+
+        if (target) {
+            return target.data
+        }
+
+        return null
+    }
+
+
+    // indexOf方法，返回指定元素所在的位置，如果链表中没有这个元素，返回-1，如果有多个，则返回第一个，需要传入参数data
+
+    this.indexOf = function (data) {
+        let idx = -1
+
+        let nextNode = head
+        while (nextNode) {
+            if (nextNode.data === data) {
+                return ++idx
+            }
+            nextNode = nextNode.next
+        }
+        return idx
+    }
+
+
+    
 
 }
