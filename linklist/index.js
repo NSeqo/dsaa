@@ -184,6 +184,58 @@ function LinkList() {
     }
 
 
-    
+
+
+}
+
+
+
+/**
+ *  基于链表实现的Stack 和 Queue, 这种就是要了解栈和队列两种数据结构的特点了
+ * 
+ */
+
+
+
+
+/**
+ *  翻转链表
+ *  使用递归 和 迭代两种方式来实现
+ *  
+ *  翻转链表就是指向全部转变，头结点变成尾节点
+ *  
+ *  使用迭代的方式就是从头节点开始遍历，需要三个指针变量 prev, curr (表示前一个节点，当前节点，下一个节点)
+ *  
+ *  每次迭代的时候就是操作
+ *   
+ *  next = curr.next // 下一个节点
+ *  // 翻转链表节点的指向
+ *  curr.next = prev
+ *  
+ *  指针变量移动
+ *  prev = curr
+ *  curr = next
+ *   
+ *  
+ */
+
+exports.reverse = function (head) {
+
+    if (!head) {
+        return null
+    }
+
+    let prev = null
+    let curr = head
+    while (curr) {
+
+        let next = curr.next
+        curr.next = prev
+
+        prev = curr
+        curr = next
+
+    }
+    return prev //返回最后有一个节点
 
 }
