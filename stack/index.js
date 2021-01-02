@@ -266,3 +266,4 @@ exports.post = function (array = []) {
 
 
 
+exports.Stack = Stack
